@@ -15,19 +15,19 @@ public class CursoService {
     @Autowired
     private CursoRepository cursoRepository;
 
-    public Curso guardar(Curso curso){
+    public Curso guardar(Curso curso) {
         return cursoRepository.save(curso);
     }
 
-    public List<Curso> listar(){
+    public List<Curso> listar() {
         return cursoRepository.findAll();
     }
 
-    public Curso buscar(Long id){
+    public Curso buscar(Long id) {
         return cursoRepository.findById(id).orElseThrow();
     }
 
-    public void eliminar(Long id){
+    public void eliminar(Long id) {
         cursoRepository.deleteById(id);
     }
 }
