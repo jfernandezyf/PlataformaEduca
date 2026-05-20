@@ -4,6 +4,7 @@ import com.example.educacion.entity.Curso;
 import com.example.educacion.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,13 +23,13 @@ public class CursoController {
     }
 
     @PostMapping
-    public ResponseEntity<Curso> guardar(@RequestBody Curso curso){
+    public ResponseEntity<Curso> guardar(@RequestBody @NonNull Curso curso){
         return ResponseEntity.ok(cursoService.guardar(curso));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Curso> editar(@PathVariable Long id,
-                                        @RequestBody Curso curso){
+    public ResponseEntity<Curso> editar(@PathVariable @NonNull Long id,
+                                        @RequestBody @NonNull Curso curso){
 
         Curso cursoDB = cursoService.buscar(id);
 
@@ -40,7 +41,7 @@ public class CursoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminar(@PathVariable Long id){
+    public ResponseEntity<String> eliminar(@PathVariable @NonNull Long id){
 
         cursoService.eliminar(id);
 

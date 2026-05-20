@@ -4,6 +4,7 @@ import com.example.educacion.entity.Nota;
 import com.example.educacion.repository.NotaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class NotaService {
     @Autowired
     private NotaRepository notaRepository;
 
-    public Nota guardar(Nota nota) {
+    public Nota guardar(@NonNull Nota nota) {
         return notaRepository.save(nota);
     }
 

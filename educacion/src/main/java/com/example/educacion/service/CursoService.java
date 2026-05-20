@@ -4,6 +4,7 @@ import com.example.educacion.entity.Curso;
 import com.example.educacion.repository.CursoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class CursoService {
     @Autowired
     private CursoRepository cursoRepository;
 
-    public Curso guardar(Curso curso) {
+    public Curso guardar(@NonNull Curso curso) {
         return cursoRepository.save(curso);
     }
 
@@ -23,11 +24,11 @@ public class CursoService {
         return cursoRepository.findAll();
     }
 
-    public Curso buscar(Long id) {
+    public Curso buscar(@NonNull Long id) {
         return cursoRepository.findById(id).orElseThrow();
     }
 
-    public void eliminar(Long id) {
+    public void eliminar(@NonNull Long id) {
         cursoRepository.deleteById(id);
     }
 }

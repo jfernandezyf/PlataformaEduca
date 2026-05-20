@@ -4,6 +4,7 @@ import com.example.educacion.entity.Nota;
 import com.example.educacion.service.NotaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class NotaController {
     }
 
     @PostMapping
-    public ResponseEntity<Nota> guardar(@RequestBody Nota nota){
+    public ResponseEntity<Nota> guardar(@RequestBody @NonNull Nota nota){
         return ResponseEntity.ok(notaService.guardar(nota));
     }
 
