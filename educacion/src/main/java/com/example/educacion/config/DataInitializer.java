@@ -18,6 +18,15 @@ public class DataInitializer {
             if (rolRepository.findByNombre("ADMIN").isEmpty()) {
                 rolRepository.save(new Rol(null, "ADMIN"));
             }
+            if (rolRepository.findByNombre("ESTUDIANTE").isEmpty()) {
+                rolRepository.save(new Rol(null, "ESTUDIANTE"));
+            }
+            if (rolRepository.findByNombre("DOCENTE").isEmpty()) {
+                rolRepository.save(new Rol(null, "DOCENTE"));
+            }
+            if (rolRepository.findByNombre("COORDINADOR").isEmpty()) {
+                rolRepository.save(new Rol(null, "COORDINADOR"));
+            }
         };
     }
 }

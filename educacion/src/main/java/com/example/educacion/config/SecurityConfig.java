@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.http.HttpMethod;
 
 @Configuration
 @EnableWebSecurity
@@ -42,6 +43,11 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 // Endpoints públicos de login y registro
                 .requestMatchers("/api/auth/**", "/error").permitAll()
+                // Permitir obtener cursos y obtener notas por estudiante a los roles ADMIN, USER y ESTUDIANTE
+                .requestMatchers(HttpMethod.GET, "/api/cursos").hasAnyRole("ADMIN", "USER", "ESTUDIANTE")
+                .requestMatchers(HttpMethod.GET, "/api/notas/estudiante/**").hasAnyRole("ADMIN", "USER", "ESTUDIANTE")
+                // El rol ESTUDIANTE no tiene permitido crear ni realizar otras operaciones en la API
+                .requestMatchers("/api/**").hasAnyRole("ADMIN", "USER")
                 // Cualquier otra petición al backend requerirá un token válido
                 .anyRequest().authenticated()
             )
